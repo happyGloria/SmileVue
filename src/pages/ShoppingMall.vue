@@ -1,6 +1,13 @@
 <template>
   <div class="">
-    <search-bar></search-bar>
+    <search-bar />
+    <div class="swiper-area">
+      <van-swipe :autoplay="1000">
+        <van-swipe-item v-for="(banner, index) in bannerPicArray" :key="index">
+          <img v-lazy="banner.image" width="100%">
+        </van-swipe-item>
+      </van-swipe>
+    </div>
   </div>
 </template>
 
@@ -12,12 +19,15 @@ export default {
   },
   data () {
     return {
-      msg: 'shopping mall'
+      msg: 'shopping mall',
+      bannerPicArray: []
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-
+.swiper-area {
+  
+}
 </style>

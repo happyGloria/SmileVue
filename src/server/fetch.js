@@ -3,7 +3,6 @@ import axios from 'axios'
 import listApis from './api.js'
 import FetchMock from './mock'
 
-Vue.prototype.$http = axios
 var apiPrefix = process.env.NODE_ENV === 'production' ? '' : '/api'
 
 Util.getMapUrl = function (url) {
@@ -12,11 +11,6 @@ Util.getMapUrl = function (url) {
 Util.formatApi = function (url) {
   return `${apiPrefix}${url}`
 }
-Vue.prototype.$API = {
-  UPLOAD_MAP: Util.formatApi('/deviceZone/uploadMap.do'),
-  IMPORT_DATA: Util.formatApi('/settings/importData.do')
-}
-
 var Test = !1,
   Service = {},
   axiosObj = axios.create({
@@ -53,12 +47,6 @@ axiosObj.interceptors.response.use(response => {
     }
   })
 }, err => {
-  let {
-    response: {
-      status,
-      statusText
-    }
-  } = err
   return Promise.reject(err)
 })
 
@@ -80,19 +68,13 @@ listApis(apiPrefix).forEach((v) => {
   Service[v[0]] = (params) => {
     var settings = {
       url: formatURL(v[1], params) + '.do',
-      method: v[2],
+      method: v[2] || 'POST',
       data: params || {}
     }
 
     if (v[3] === 'blob') {
       settings.responseType = v[3]
     }
-    /* if (v[3] === 'text/plain') {
-      settings.data = JSON.stringify(params)
-      settings.headers = {
-        'Content-type': v[3]
-      }
-    } */
     return Test ? FetchMock(v[0], settings) : axiosObj(settings)
   }
 })

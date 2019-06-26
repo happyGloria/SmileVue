@@ -4,8 +4,8 @@ import {
   Button,
   Row,
   Col,
-  Swiper, // 轮播图
-  SwiperItem,
+  Swipe, // 轮播图
+  SwipeItem,
   Lazyload // 图片懒加载
 } from 'vant'
 
@@ -13,3 +13,6 @@ Vue
   .use(Button)
   .use(Row)
   .use(Col)
+  .use(Swipe)
+  .use(SwipeItem)
+  .use(Lazyload)

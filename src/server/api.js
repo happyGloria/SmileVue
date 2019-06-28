@@ -1,7 +1,7 @@
 module.exports = function (prefix) {
   prefix = prefix || ''
   return [
-    ['getShopingMallInfo', '/index', 'get'], // 商城首页所有信息
+    [ 'getShopingMallInfo', '/index' ], // 商城首页所有信息
     ['getGoodsInfo', '/getGoodsInfo'], // 商品
     ['getDetailGoodsInfo', '/getDetailGoodsInfo'],
     ['listCategory', '/getCategoryList'], // 得到大类信息

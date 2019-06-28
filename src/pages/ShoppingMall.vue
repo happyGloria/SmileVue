@@ -48,49 +48,82 @@
       <div class="recommend-title">商品推荐</div>
       <div class="recommend-body">
         <swiper :options="swiperOption">
-          <swiper-slide v-for="(item,index) in recommendGoods"
-                        :key="index">
+          <swiper-slide v-for="(item, index) in recommendGoods"
+                        :key="index"
+                        class="swiper-slide">
             <div class="recommend-item">
               <img :src="item.image"
-                   alt=""
                    width="80%">
               <div>{{ item.goodsName }}</div>
-              <div>￥{{ item.price | moneyFilter }} (￥{{ item.mallPrice | moneyFilter }})</div>
+              <div>￥{{ item.price | moneyFilter }} (￥{{ item.mallPrice | moneyFilter }}) </div>
             </div>
           </swiper-slide>
+          <div class="swiper-pagination"  slot="pagination" />
+          <!-- <div class="swiper-button-prev" slot="button-prev" />
+          <div class="swiper-button-next" slot="button-next" /> -->
         </swiper>
+      </div>
+    </div>
+    <!-- floor -->
+    <floor v-for="(floor, index) in floorData"
+           :key="index"
+           :floorData="floorData[index]"
+           :floorTitle="floorName[`floor${index+1}`]"></floor>
+    <!-- Hot area -->
+    <div class="hot-area">
+      <div class="hot-title">热卖商品</div>
+      <div class="hot-goods">
+        <van-list>
+          <van-row gutter="20">
+            <van-col span="12" v-for="(item, index) in hotGoods" :key="index">
+              <goods-info :goodsInfo="item" />
+            </van-col>
+          </van-row>
+        </van-list>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { toMoney } from '@/filter'
-
-import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+
+import Floor from './Floor.vue'
+import GoodsInfo from './goodsInfo.vue'
 
 export default {
   components: {
     swiper,
-    swiperSlide
+    swiperSlide,
+    Floor,
+    GoodsInfo
   },
   data () {
     return {
       locationIcon: require('@/assets/images/location.png'),
-      msg: 'shopping mall',
       bannerPicArray: [],
       category: [],
       adBanner: '',
       recommendGoods: [],
       swiperOption: {
-        slidePerView: 3
-      }
+        /* slidePerView: 3, */
+        loop: true,
+        autoplay: 3000,
+        paginatinType: 'fraction',
+        speed: 900,
+        observeParents: true,
+        observer: true
+      },
+      floorData: [],
+      floorName: [],
+      hotGoods: []
     }
   },
   filters: {
     moneyFilter (money) {
-      return toMoney(money)
+      money = money || 0
+      return money.toFixed(2)
     }
   },
   created () {
@@ -99,6 +132,9 @@ export default {
       this.category = data.category
       this.adBanner = data.advertesPicture.PICTURE_ADDRESS
       this.recommendGoods = data.recommend
+      this.floorData = [data.floor1, data.floor2, data.floor3]
+      this.floorName = data.floorName
+      this.hotGoods = data.hotGoods
     })
   }
 }
@@ -166,7 +202,7 @@ export default {
 
   .hot-area {
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     height: 1.8rem;
     line-height: 1.8rem;
   }
@@ -174,6 +210,7 @@ export default {
     height: 130rem;
     overflow: hidden;
     background-color: #fff;
+    font-size: 12px;
   }
 }
 </style>

@@ -8,7 +8,7 @@ import FetchMock from './mock'
 function formatApi (url) {
   return `${apiPrefix}${url}`
 } */
-const BASEURL = ' https://easy-mock.com/mock/5d11e933efa54066689f423c/SmileVue'
+const BASEURL = 'https://easy-mock.com/mock/5d11e933efa54066689f423c/SmileVue'
 let apiPrefix = process.env.NODE_ENV === 'production' ? BASEURL : BASEURL,
   Test = !1,
   Service = {},
@@ -63,7 +63,7 @@ listApis(apiPrefix).forEach((v) => {
   Service[v[0]] = (params) => {
     var settings = {
       url: formatURL(v[1], params),
-      method: v[2] || 'POST',
+      method: v[2] || 'GET',
       data: params || {}
     }
 

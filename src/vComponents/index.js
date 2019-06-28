@@ -6,7 +6,10 @@ import {
   Col,
   Swipe, // 轮播图
   SwipeItem,
-  Lazyload // 图片懒加载
+  Lazyload, // 图片懒加载
+  List,
+  Tabbar,
+  TabbarItem
 } from 'vant'
 
 Vue
@@ -16,3 +19,6 @@ Vue
   .use(Swipe)
   .use(SwipeItem)
   .use(Lazyload)
+  .use(List)
+  .use(Tabbar)
+  .use(TabbarItem)

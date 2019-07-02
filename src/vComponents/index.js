@@ -9,7 +9,8 @@ import {
   Lazyload, // 图片懒加载
   List,
   Tabbar,
-  TabbarItem
+  TabbarItem,
+  Icon
 } from 'vant'
 
 Vue
@@ -22,3 +23,4 @@ Vue
   .use(List)
   .use(Tabbar)
   .use(TabbarItem)
+  .use(Icon)

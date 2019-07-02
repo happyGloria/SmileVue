@@ -90,7 +90,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
 import Floor from './Floor.vue'
-import GoodsInfo from './goodsInfo.vue'
+import GoodsInfo from './GoodsInfo.vue'
 
 export default {
   components: {

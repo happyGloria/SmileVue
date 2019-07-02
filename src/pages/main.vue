@@ -4,10 +4,16 @@
       <router-view />
     </keep-alive>
     <van-tabbar v-model="active"
+                class="navbar-bottom"
                 @change="changeTabbar(active)">
-      <van-tabbar-item v-for="(item, index) in tabs"
+      <!-- <van-tabbar-item v-for="(item, index) in tabs"
                        :key="index"
-                       :icon="item.icon">{{ item.txt }}</van-tabbar-item>
+                       :icon="item.icon">{{ item.txt }}</van-tabbar-item> -->
+      <van-tabbar-item v-for="(item, index) in tabs"
+                       :key="index">
+        <i :class="`ico ico-${item.icon}`"></i>
+        <div>{{ item.txt }}</div>
+      </van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -17,10 +23,10 @@ export default {
   data () {
     return {
       tabs: [
-        { icon: 'shop', txt: '首页' },
-        { icon: 'records', txt: '列表' },
-        { icon: 'cart', txt: '购物车' },
-        { icon: 'concat', txt: '会员中心' }
+        { icon: 'shouye', txt: '首页' },
+        { icon: 'wodedingdan', txt: '列表' },
+        { icon: 'gouwuche', txt: '购物车' },
+        { icon: 'xiaoxizhongxin', txt: '会员中心' }
       ],
       active: 0,
       curPath: ''
@@ -35,7 +41,7 @@ export default {
   methods: {
     changeTabBarActive () {
       this.curPath = this.$route.path
-      if (this.curPath == '/Cart') {
+      if (this.curPath === '/Cart') {
         this.active = 2
       }
     },
@@ -61,4 +67,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.navbar-bottom {
+  position: fixed;
+  bottom: 0;
+  height: 2.5rem;
+  .van-tabbar-item__text {
+    .ico {
+      display: block;
+      height: 1.4rem;
+      line-height: 1.4rem;
+    }
+  }
+}
 </style>

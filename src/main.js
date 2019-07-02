@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import '@/vComponents'
 import '@/server/fetch.js'
+import '~static/iconfont/iconfont.css'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

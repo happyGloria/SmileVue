@@ -11,7 +11,7 @@
                        :icon="item.icon">{{ item.txt }}</van-tabbar-item> -->
       <van-tabbar-item v-for="(item, index) in tabs"
                        :key="index">
-        <i :class="`ico ico-${item.icon}`"></i>
+        <van-icon class-prefix="ico" :name="item.icon" />
         <div>{{ item.txt }}</div>
       </van-tabbar-item>
     </van-tabbar>
